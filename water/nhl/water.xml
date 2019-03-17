@@ -1,0 +1,28 @@
+<ForceField>
+  <AtomTypes>
+    <Type name="HW" class="HW" element="H" mass="1.008"/>
+    <Type name="OW" class="OW" element="O" mass="15.9994"/>
+  </AtomTypes>
+  <Residues>
+    <Residue name="HOH">
+      <Atom name="Hw1" type="HW" charge="0.41"/>
+      <Atom name="Ow" type="OW" charge="-0.82"/>
+      <Atom name="Hw2" type="HW" charge="0.41"/>
+      <Bond atomName1="Ow" atomName2="Hw1"/>
+      <Bond atomName1="Ow" atomName2="Hw2"/>
+    </Residue>
+  </Residues>
+  <HarmonicBondForce>
+    <Bond type1="OW" type2="HW" length="0.1012" k="443153.3808"/>
+  </HarmonicBondForce>
+  <HarmonicAngleForce>
+    <Angle type1="HW" type2="OW" type3="HW" angle="1.97641087" k="317.5656"/>
+  </HarmonicAngleForce>
+  <PeriodicTorsionForce>
+  </PeriodicTorsionForce>
+  <NonbondedForce coulomb14scale="0.833333" lj14scale="0.5">
+    <UseAttributeFromResidue name="charge"/>
+    <Atom type="HW" sigma="1" epsilon="0"/>
+    <Atom type="OW" sigma="0.3165492" epsilon="0.6502994552"/>
+  </NonbondedForce>
+</ForceField>
