@@ -1,0 +1,58 @@
+! TRAVIS input file
+! Created with TRAVIS version compiled at Mar  2 2019 16:49:16
+! Source code version: Jan 01 2019
+! Input file written at Sat Mar  2 19:35:17 2019.
+! Use the advanced mode until the analysis selection menu (y/n)? [no] 
+
+! Are the 3 cell vectors of the same size (yes/no)? [yes] 
+
+! Enter length of cell vector in pm: 
+2465.3
+! Create images of the structural formulas (y/n)? [no] 
+
+! Accept these molecules (y) or change something (n)? [yes] 
+
+! Which functions to compute (comma separated)?
+adf
+! Use the advanced mode for the main part (y/n)? [no] 
+
+! Perform this observation intramolecular (within the reference molecule) (0) or intermolecular (1)? [1] 
+0
+! Should the 1. vector depict position (1), dipole (2), velocity (3) or force (4)? [1] 
+
+! Should the 2. vector depict position (1), dipole (2), velocity (3) or force (4)? [1] 
+
+! Should the 1. vector connect 2 points (0) or stand perpendicular to 3 points (1)? [0] 
+
+! Please enter the atom(s) at the base point (e.g. C7):
+O1
+! Please enter the atom(s) at the tip point (e.g. C7):
+H1
+! Should the 2. vector connect 2 points (0) or stand perpendicular to 3 points (1)? [0] 
+
+! Please enter the atom(s) at the base point (e.g. C7):
+O1
+! Please enter the atom(s) at the tip point (e.g. C7):
+H2
+! Enter minimal angle between the vectors: [0 deg] 
+70
+! Enter maximal angle between the vectors: [180 deg] 
+130
+! Plot ADF against angle (0) or against cosine (1)? [0] 
+
+! Force this ADF to be mirror-symmetric to the 90 deg line (y/n)? [no] 
+
+! Please enter the resolution (bin count) for this ADF: [100] 
+120
+! Save temporal development for this observation (y/n)? [no] 
+
+! Add another observation (y/n)? [no] 
+
+! Skip repeated time steps (y/n)? [no] 
+
+! In which time step to start processing the trajectory? [1] 
+1667
+! How many time steps to use (from this position on)? [all] 
+
+! Use every n-th time step from the trajectory? [1] 
+1
