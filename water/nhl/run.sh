@@ -42,7 +42,7 @@ secdev+=("3")
 
 name=dt${case[$1]}fs
 cd $name
-python simulate.py --device ${device[$1]} --secdev ${secdev[$1]} --timestep ${case[$1]} --nsteps ${nsteps[$1]}
+#python simulate.py --device ${device[$1]} --secdev ${secdev[$1]} --timestep ${case[$1]} --nsteps ${nsteps[$1]}
 
 properties='Temp PotEng Press MolPress'
 
