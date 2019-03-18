@@ -7,7 +7,7 @@ import os
 from scipy.fftpack import fft
 
 dt_scaling = 'log'
-methods = dict(sinr='SIN(R)', langevin='Memory Langevin')
+methods = dict(sinr='SIN(R)', langevin='Memory Langevin', impulse='Impulse Langevin')
 tools = methods.keys()
 step_size = {'0.5': 0.5}
 label = {'0.5': '0.5 fs (*)'}
