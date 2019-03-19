@@ -64,7 +64,7 @@ else:
             force.setForceGroup(1)
     loops = [2*args.timestep, 1]
 
-integrator = atomsmm.SIN_R_Integrator(dt, loops, temp, tau, gamma)
+integrator = atomsmm.integrators.Langevin_R_Integrator(dt, loops, temp, gamma, has_memory=True)
 
 simulation = openmm.app.Simulation(pdb.topology, respa_system, integrator, platform, properties)
 simulation.context.setPositions(pdb.positions)
