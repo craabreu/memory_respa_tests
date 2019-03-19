@@ -1,0 +1,40 @@
+define molecule as  ethylene glycol
+
+
+# Atom definitions:
+atom C1 c3 0.127
+atom C2 c3 0.127
+atom O1 oh -0.5956
+atom O2 oh -0.5956
+atom H1 h1 0.0332
+atom H2 h1 0.0332
+atom H3 h1 0.0332
+atom H4 h1 0.0332
+atom H5 ho 0.4021
+atom H6 ho 0.4021
+
+# Bond definitions:
+bond C1 C2
+bond C2 O1
+bond C1 O2
+bond C1 H1
+bond C1 H2
+bond C2 H3
+bond C2 H4
+bond O1 H5
+bond O2 H6
+
+# Coordinates:
+build
+10
+
+C1 -2.146 -0.194 -0.121
+C2 -0.894 0.451 0.442
+O1 -0.812 1.792 -0.025
+O2 -3.283 0.541 0.317
+H1 -2.251 -1.225 0.23
+H2 -2.127 -0.176 -1.214
+H3 0.005 -0.08 0.112
+H4 -0.931 0.469 1.535
+H5 -0.003 2.17 0.354
+H6 -4.061 0.102 -0.06

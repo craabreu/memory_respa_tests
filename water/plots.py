@@ -6,9 +6,13 @@ import figstyle
 import os
 from scipy.fftpack import fft
 
+methods = dict(
+    sinr='Isokinetic',
+    langevin='Memory Langevin',
+    # impulse='Impulse Langevin',
+)
+
 dt_scaling = 'log'
-methods = dict(sinr='SIN(R)', langevin='Memory Langevin', impulse='Impulse Langevin')
-tools = methods.keys()
 step_size = {'0.5': 0.5}
 label = {'0.5': '0.5 fs (*)'}
 for case in ['01', '03', '06', '09', '15', '30', '45', '90']:
@@ -16,8 +20,8 @@ for case in ['01', '03', '06', '09', '15', '30', '45', '90']:
     label[case] = '{} fs'.format(int(case))
 
 def data(type, timesteps):
-    repo = {tool:[] for tool in tools}
-    for dt, tool in itertools.product(timesteps, tools):
+    repo = {tool:[] for tool in methods.keys()}
+    for dt, tool in itertools.product(timesteps, methods.keys()):
         file = '{}/results/dt{}fs_{}.csv'.format(tool, dt.replace('.', 'p'), type)
         if os.path.isfile(file):
             repo[tool].append(pd.read_csv(file, skipinitialspace=True))
@@ -28,7 +32,7 @@ def plot_radial_distribution_functions(timesteps):
     rdf = data('rdf', timesteps)
     for tool, method in methods.items():
         fig, ax = plt.subplots(3, 1, figsize=(3.37,5.6), sharex=True)
-        fig.suptitle(f'{method}: Radial distribution functions')
+        fig.suptitle(f'Radial distribution functions ({method})')
         fig.subplots_adjust(hspace=0.1)
         ax[-1].set_xlabel('Distance (\\AA)')
         for dt, gr in zip(timesteps, rdf[tool]):
@@ -36,7 +40,19 @@ def plot_radial_distribution_functions(timesteps):
             for i, pair in enumerate(['O-O', 'O-H', 'H-H']):
                 ax[i].plot(distance, gr[f'g({pair})'], label=label[dt])
                 ax[i].set_ylabel(f'g({pair})')
-        ax[2].legend(loc='lower right', ncol=2)
+        ax[0].legend(loc='upper right', ncol=2)
+
+        axins = ax[2].inset_axes([0.5, 0.03, 0.47, 0.47])
+        for dt, gr in zip(timesteps, rdf[tool]):
+            distance = gr['Distance [pm]']/100
+            axins.plot(distance, gr['g(H-H)'], label=label[dt])
+        axins.set_xlim(2.5, 3.5)
+        axins.set_ylim(0.6, 0.8)
+        axins.set_xticklabels('')
+        axins.set_yticklabels('')
+        axins.plot(distance, gr['g(H-H)'], label=label[dt])
+        ax[2].indicate_inset_zoom(axins)
+
         fig.savefig(f'{tool}_rdf.png')
 
 # Bond length distributions:
@@ -44,7 +60,7 @@ def plot_bond_length_distributions(timesteps):
     bond = data('bond', timesteps)
     for tool, method in methods.items():
         fig, ax = plt.subplots(1, 1, figsize=(3.37,2.3), sharex=True)
-        fig.suptitle(f'{method}: Bond length distributions')
+        fig.suptitle(f'Bond length distributions ({method})')
         ax.set_xlabel('Distance (\\AA)')
         for dt, gr in zip(timesteps, bond[tool]):
             distance = gr['# Distance [pm]']/100
@@ -58,7 +74,7 @@ def plot_angle_distributions(timesteps):
     angle = data('angle', timesteps)
     for tool, method in methods.items():
         fig, ax = plt.subplots(1, 1, figsize=(3.37,2.3), sharex=True)
-        fig.suptitle(f'{method}: Angle distributions')
+        fig.suptitle(f'Angle distributions ({method})')
         ax.set_xlabel('Angle (\\textdegree)')
         for dt, gr in zip(timesteps, angle[tool]):
             distance = gr['# Angle (degree)']
@@ -107,8 +123,8 @@ def plot_properties():
 
 all = ['0.5', '01', '03', '06', '09', '15', '30', '45', '90']
 plot_radial_distribution_functions(all)
-plot_bond_length_distributions(all)
-plot_angle_distributions(all)
-plot_bond_and_angle_averages()
-plot_properties()
+# plot_bond_length_distributions(all)
+# plot_angle_distributions(all)
+# plot_bond_and_angle_averages()
+# plot_properties()
 plt.show()

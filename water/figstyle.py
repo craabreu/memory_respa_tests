@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 params = {
 	'figure.subplot.hspace': 0.2,
-	'figure.titlesize': 16,
+	'figure.titlesize': 12,
 	'font.size': 8,
 	'text.usetex': True,
 	'lines.linewidth': 0.5,
