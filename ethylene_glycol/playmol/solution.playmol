@@ -8,7 +8,7 @@ include $folder/$substance.playmol
 define  name as ethylene_glycol
 
 define  density as 1.11 # g/cm³
-define  N as 250
+define  N as 500
 box     density {0.602214*$density} # Da/Å³
 
 packmol retry 0.85 pack mol(C1) $N action execute
