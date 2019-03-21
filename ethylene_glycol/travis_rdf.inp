@@ -29,7 +29,7 @@ O
 ! Enter the minimal radius of this RDF in pm: [0] 
 
 ! Enter the maximal radius of this RDF in pm: [1400.0] 
-1200
+900
 ! Enter the resolution (bin count) for this RDF: [300] 
 
 ! Correct radial distribution for this RDF (y/n)? [yes] 
@@ -53,7 +53,7 @@ H1-2
 ! Enter the minimal radius of this RDF in pm: [0] 
 
 ! Enter the maximal radius of this RDF in pm: [1400.0] 
-1200
+900
 ! Enter the resolution (bin count) for this RDF: [300] 
 
 ! Correct radial distribution for this RDF (y/n)? [yes] 
@@ -77,7 +77,7 @@ H1-2
 ! Enter the minimal radius of this RDF in pm: [0] 
 
 ! Enter the maximal radius of this RDF in pm: [1400.0] 
-1200
+900
 ! Enter the resolution (bin count) for this RDF: [300] 
 
 ! Correct radial distribution for this RDF (y/n)? [yes] 
