@@ -37,7 +37,7 @@ y
 ! Plot DDF against angle (0) or against cosine (1)? [0] 
 
 ! Please enter binning resolution for this DDF: [100] 
-360
+180
 ! Save temporal development for this observation (y/n)? [no] 
 
 ! Add another observation (y/n)? [no] 
@@ -63,7 +63,7 @@ y
 ! Plot DDF against angle (0) or against cosine (1)? [0] 
 
 ! Please enter binning resolution for this DDF: [100] 
-360
+180
 ! Save temporal development for this observation (y/n)? [no] 
 
 ! Add another observation (y/n)? [no] 
@@ -89,7 +89,7 @@ y
 ! Plot DDF against angle (0) or against cosine (1)? [0] 
 
 ! Please enter binning resolution for this DDF: [100] 
-360
+180
 ! Save temporal development for this observation (y/n)? [no] 
 
 ! Add another observation (y/n)? [no] 
