@@ -7,7 +7,7 @@ cd $dir/$name
 mkdir -p bdf
 cd bdf
 root=../../../..
-$root/travis/exe/travis -i $root/ethylene_glycol/travis_bond.inp -p ../$name.xyz > ${name}_bond.output
+#$root/travis/exe/travis -i $root/ethylene_glycol/travis_bond.inp -p ../$name.xyz > ${name}_bond.output
 
 file="rdf_C2H6O2_#2_[C1r_C2r].csv"
 cut -d";" -f1,2 $file > $root/ethylene_glycol/$dir/results/${name}_cc_bond.csv

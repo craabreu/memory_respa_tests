@@ -1,0 +1,104 @@
+! TRAVIS input file
+! Created with TRAVIS version compiled at Mar 17 2019 11:40:22
+! Source code version: Jan 01 2019
+! Input file written at Thu Mar 21 15:06:45 2019.
+! Use the advanced mode until the analysis selection menu (y/n)? [no] 
+
+! Are the 3 cell vectors of the same size (yes/no)? [yes] 
+
+! Enter length of cell vector in pm: 
+3580.5
+! Create images of the structural formulas (y/n)? [no] 
+
+! Accept these molecules (y) or change something (n)? [yes] 
+
+! Which functions to compute (comma separated)?
+ddf
+! Use the advanced mode for the main part (y/n)? [no] 
+
+! Perform this observation intramolecular (within the reference molecule) (0) or intermolecular (1)? [1] 
+0
+! Use "simple" (y) (4 atoms) or "generalized" (n) (3 vectors) Dihedrals? [yes] 
+
+! Enter the 1. atom(s) (e.g. C7):
+O1
+! Enter the 2. atom(s) (e.g. C7):
+C1
+! Enter the 3. atom(s) (e.g. C7):
+C2
+! Enter the 4. atom(s) (e.g. C7):
+O2
+! Use range of 0 ... 360 deg instead (e.g. -90 deg becomes 270 deg, ...) (y/n)? [no] 
+y
+! Enter minimal dihedral angle to observe:   [0 deg] 
+
+! Enter maximal dihedral angle to observe: [360 deg] 
+
+! Plot DDF against angle (0) or against cosine (1)? [0] 
+
+! Please enter binning resolution for this DDF: [100] 
+360
+! Save temporal development for this observation (y/n)? [no] 
+
+! Add another observation (y/n)? [no] 
+y
+! Perform this observation intramolecular (within the reference molecule) (0) or intermolecular (1)? [1] 
+0
+! Use "simple" (y) (4 atoms) or "generalized" (n) (3 vectors) Dihedrals? [yes] 
+
+! Enter the 1. atom(s) (e.g. C7):
+C1
+! Enter the 2. atom(s) (e.g. C7):
+C2
+! Enter the 3. atom(s) (e.g. C7):
+O2
+! Enter the 4. atom(s) (e.g. C7):
+H2
+! Use range of 0 ... 360 deg instead (e.g. -90 deg becomes 270 deg, ...) (y/n)? [no] 
+y
+! Enter minimal dihedral angle to observe:   [0 deg] 
+
+! Enter maximal dihedral angle to observe: [360 deg] 
+
+! Plot DDF against angle (0) or against cosine (1)? [0] 
+
+! Please enter binning resolution for this DDF: [100] 
+360
+! Save temporal development for this observation (y/n)? [no] 
+
+! Add another observation (y/n)? [no] 
+y
+! Perform this observation intramolecular (within the reference molecule) (0) or intermolecular (1)? [1] 
+0
+! Use "simple" (y) (4 atoms) or "generalized" (n) (3 vectors) Dihedrals? [yes] 
+
+! Enter the 1. atom(s) (e.g. C7):
+C2
+! Enter the 2. atom(s) (e.g. C7):
+C1
+! Enter the 3. atom(s) (e.g. C7):
+O1
+! Enter the 4. atom(s) (e.g. C7):
+H1
+! Use range of 0 ... 360 deg instead (e.g. -90 deg becomes 270 deg, ...) (y/n)? [no] 
+y
+! Enter minimal dihedral angle to observe:   [0 deg] 
+
+! Enter maximal dihedral angle to observe: [360 deg] 
+
+! Plot DDF against angle (0) or against cosine (1)? [0] 
+
+! Please enter binning resolution for this DDF: [100] 
+360
+! Save temporal development for this observation (y/n)? [no] 
+
+! Add another observation (y/n)? [no] 
+
+! Skip repeated time steps (y/n)? [no] 
+
+! In which time step to start processing the trajectory? [1] 
+1667
+! How many time steps to use (from this position on)? [all] 
+
+! Use every n-th time step from the trajectory? [1] 
+
