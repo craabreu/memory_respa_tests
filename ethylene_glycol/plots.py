@@ -24,7 +24,6 @@ def data(type, timesteps):
     repo = {tool:[] for tool in methods.keys()}
     for dt, tool in itertools.product(timesteps, methods.keys()):
         file = '{}/results/dt{}fs_{}.csv'.format(tool, dt.replace('.', 'p'), type)
-        print(file)
         if os.path.isfile(file):
             repo[tool].append(pd.read_csv(file, skipinitialspace=True))
     return repo
@@ -59,17 +58,20 @@ def plot_radial_distribution_functions(timesteps):
 
 # Bond length distributions:
 def plot_bond_length_distributions(timesteps):
-    bond = data('bond', timesteps)
-    for tool, method in methods.items():
-        fig, ax = plt.subplots(1, 1, figsize=(3.37,2.3), sharex=True)
-        fig.suptitle(f'Bond length distributions ({method})')
-        ax.set_xlabel('Distance (\\AA)')
-        for dt, gr in zip(timesteps, bond[tool]):
-            distance = gr['# Distance [pm]']/100
-            ax.plot(distance, gr['g(r)'], label=label[dt])
-            ax.set_ylabel(f'frequency')
-        ax.legend()
-        fig.savefig(f'{tool}_bond.png')
+    for type in ['cc', 'co', 'oh']:
+        bond = data(f'{type}_bond', timesteps)
+        for tool, method in methods.items():
+            fig, ax = plt.subplots(1, 1, figsize=(3.37,2.3), sharex=True)
+            fig.suptitle(f'{type.upper()} Bond length distributions ({method})')
+            ax.set_xlabel('Distance (\\AA)')
+            for dt, gr in zip(timesteps, bond[tool]):
+                distance = gr['# Distance [pm]']/100
+                if len(gr.columns) > 2:
+                    gr['g(r)'] = 0.5*(gr['g1(r)'] + gr['g2(r)'])
+                ax.plot(distance, gr['g(r)'], label=label[dt])
+                ax.set_ylabel(f'frequency')
+            ax.legend()
+            fig.savefig(f'{tool}_{type}_bond.png')
 
 # Angle distributions:
 def plot_angle_distributions(timesteps):
@@ -127,9 +129,9 @@ def plot_properties():
     fig.savefig('average_properties.png')
 
 all = ['0.5', '01', '03', '06', '09', '15', '30', '45', '90']
-plot_radial_distribution_functions(all)
+# plot_radial_distribution_functions(all)
 # plot_bond_length_distributions(all)
 # plot_angle_distributions(all)
-# plot_bond_and_angle_averages()
+plot_bond_and_angle_averages()
 # plot_properties()
 plt.show()
