@@ -12,6 +12,7 @@ methods = dict(
     # impulse='Impulse Langevin',
 )
 
+Nmol = 500
 dt_scaling = 'log'
 step_size = {'0.5': 0.5}
 label = {'0.5': '0.5 fs (*)'}
@@ -108,14 +109,17 @@ def plot_properties():
     fig, ax = plt.subplots(n, 1, figsize=(3.37,n*2+0.3), sharex=True)
     fig.suptitle('Average Properties')
     ax[-1].set_xlabel('Time step size (fs)')
-    properties = dict(PotEng='Potential Energy (kJ/mol)',
-                      Press='Atomic Pressure (atm)',
-                      MolPress='Molecular Pressure (atm)')
+    properties = dict(PotEng='$\\langle U/N \\rangle$ (kJ/mol)',
+                      Press='$P_\\mathrm{atom}$ (atm)',
+                      MolPress='$P_\\mathrm{mol}$ (atm)')
     for tool, method in methods.items():
         df = pd.read_csv(f'{tool}/results/properties.csv')
         for i, type in enumerate(properties.keys()):
-            dt, mean = df['dt'], df[type]
-            ax[i].plot(dt, mean, marker='o', label=method)
+            dt, mean, rmse = df['dt'], df[type], df[f'rmse[{type}]']
+            if type == 'PotEng':
+                mean /= Nmol
+                rmse /= Nmol
+            ax[i].errorbar(dt, mean, yerr=rmse, marker='o', label=method)
             ax[i].legend()
             ax[i].set_xscale(dt_scaling)
             ax[i].set_ylabel(properties[type])
