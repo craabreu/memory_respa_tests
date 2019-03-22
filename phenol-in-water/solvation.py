@@ -17,6 +17,7 @@ parser.add_argument('--nsteps', dest='nsteps', help='number of steps', type=int,
 parser.add_argument('--device', dest='device', help='the GPU device', default='None')
 parser.add_argument('--seed', dest='seed', help='the RNG seed', type=int, default=0)
 parser.add_argument('--platform', dest='platform', help='the computation platform', default='CUDA')
+parser.add_argument('--part', dest='part', help='the case part', type=int, default=0)
 args = parser.parse_args()
 
 seed = int(1000*time.time()) % 16384 if args.seed == 0 else args.seed
@@ -88,7 +89,8 @@ simulation = openmm.app.Simulation(pdb.topology, respa_system, integrator, platf
 simulation.context.setPositions(pdb.positions)
 simulation.context.setVelocitiesToTemperature(temp, seed)
 
-states_data = pd.read_csv('alchemical_states.inp', sep='\s+', comment='#')
+states_file = 'alchemical_states' + ('.inp' if args.part == 0 else f'_{args.part}.inp')
+states_data = pd.read_csv(states_file, sep='\s+', comment='#')
 parameterStates = states_data[['lambda_vdw', 'lambda_coul']]
 simulate = states_data['weight'] != -np.inf
 for state in reversed(states_data.index):
