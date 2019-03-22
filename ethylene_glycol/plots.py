@@ -87,6 +87,23 @@ def plot_angle_distributions(timesteps):
         ax.legend()
         fig.savefig(f'{tool}_angle.png')
 
+# Dihedral angle distributions:
+def plot_dihedral_distributions(timesteps):
+    for type in ['occo', 'ccoh']:
+        bond = data(f'{type}_dihedral', timesteps)
+        for tool, method in methods.items():
+            fig, ax = plt.subplots(1, 1, figsize=(3.37,2.3), sharex=True)
+            fig.suptitle(f'{type.upper()} Bond length distributions ({method})')
+            ax.set_xlabel('Dihedral Angle (\\textdegree)')
+            for dt, frame in zip(timesteps, bond[tool]):
+                angle = frame['# Dihedral Angle (Degree)']
+                if len(frame.columns) > 2:
+                    frame['Occurrence'] = 0.5*(frame['Occurrence1'] + frame['Occurrence2'])
+                ax.plot(angle, frame['Occurrence'], label=label[dt])
+                ax.set_ylabel(f'frequency')
+            ax.legend()
+            fig.savefig(f'{tool}_{type}_dihedral.png')
+
 # Average bonds and angles:
 def plot_bond_and_angle_averages():
     fig, ax = plt.subplots(2, 1, figsize=(3.37,4.6), sharex=True)
@@ -132,6 +149,7 @@ all = ['0.5', '01', '03', '06', '09', '15', '30', '45', '90']
 # plot_radial_distribution_functions(all)
 # plot_bond_length_distributions(all)
 # plot_angle_distributions(all)
-plot_bond_and_angle_averages()
+plot_dihedral_distributions(all)
+# plot_bond_and_angle_averages()
 # plot_properties()
 plt.show()
