@@ -12,7 +12,7 @@ from simtk import unit
 from simtk.openmm import app
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--timestep', dest='timestep', help='time step size', type=int, required=True)
+#parser.add_argument('--timestep', dest='timestep', help='time step size', type=int, required=True)
 parser.add_argument('--nsteps', dest='nsteps', help='number of steps', type=int, required=True)
 parser.add_argument('--device', dest='device', help='the GPU device', default='None')
 parser.add_argument('--seed', dest='seed', help='the RNG seed', type=int, default=0)
@@ -32,7 +32,7 @@ method = methods[1]
 
 steps_per_state = args.nsteps
 
-dt = args.timestep*unit.femtoseconds
+dt = 0.5*unit.femtoseconds
 temp = 298.15*unit.kelvin
 rcut = 12*unit.angstroms
 rswitch = 11*unit.angstroms
@@ -40,7 +40,7 @@ rcutIn = 8*unit.angstroms
 rswitchIn = 5*unit.angstroms
 tau = 10*unit.femtoseconds
 gamma = 0.1/unit.femtoseconds
-reportInterval = 90//args.timestep
+reportInterval = 40
 
 platform = openmm.Platform.getPlatformByName(platform_name)
 properties = dict(Precision='mixed') if platform_name == 'CUDA' else dict()
@@ -65,19 +65,11 @@ nbforce.setUseDispersionCorrection(True)
 
 solvation_system = atomsmm.SolvationSystem(openmm_system, solute_atoms,
                                            use_softcore=True,
-                                           softcore_group=1,
+                                           softcore_group=0,
                                            split_exceptions=True)
 
-if args.timestep <= 3:
-    respa_system = solvation_system
-    for force in solvation_system.getForces():
-        if isinstance(force, openmm.NonbondedForce):
-            force.setReciprocalSpaceForceGroup(1)
-            force.setForceGroup(1)
-    loops = [2*args.timestep, 1]
-else:
-    respa_system = atomsmm.RESPASystem(solvation_system, rcutIn, rswitchIn, fastExceptions=True)
-    loops = [6, args.timestep//3, 1]
+respa_system = solvation_system
+loops = [1]
 
 if method == 'Langevin':
     integrator = atomsmm.integrators.Langevin_R_Integrator(dt, loops, temp, gamma, has_memory=True)
