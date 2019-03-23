@@ -25,7 +25,7 @@ samples = mx.pooledsample()
 for i, file in zip(states.index, files):
     print(f"Reading file {file}")
     df = pd.read_csv(file)
-    df.drop(index=range(3000), inplace=True)
+    df.drop(index=range(15000), inplace=True)
     df.rename(renamer, axis='columns', inplace=True)
     prev = max(i-1, 0)
     next = min(i+1, nstates-1)
@@ -33,6 +33,8 @@ for i, file in zip(states.index, files):
                          lambda_vdw=states.lambda_vdw[i],
                          lambda_coul=states.lambda_coul[i])
 
+samples.histograms().plot(x='potential')
+plt.show()
 mixture = mx.mixture(samples, engine=mx.MICS(tol=1.0E-11))
 # mixture = mx.mixture(samples.subsampling(), engine=mx.MBAR())
 f = mixture.free_energies()
