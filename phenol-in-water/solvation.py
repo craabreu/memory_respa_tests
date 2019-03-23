@@ -89,7 +89,7 @@ simulation = openmm.app.Simulation(pdb.topology, respa_system, integrator, platf
 simulation.context.setPositions(pdb.positions)
 simulation.context.setVelocitiesToTemperature(temp, seed)
 
-states_file = '../../alchemical_states' + ('.inp' if args.part == 0 else f'_{args.part}.inp')
+states_file = 'alchemical_states' + ('.inp' if args.part == 0 else f'_{args.part}.inp')
 states_data = pd.read_csv(states_file, sep='\s+', comment='#')
 parameterStates = states_data[['lambda_vdw', 'lambda_coul']]
 simulate = states_data['weight'] != -np.inf

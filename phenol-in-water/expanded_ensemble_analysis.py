@@ -17,9 +17,10 @@ args = parser.parse_args()
 
 solute = 'phenol'
 solvent = 'water'
+#base = '{}-in-{}_energy'.format(solute, solvent)
 base = '{}-in-{}_energy'.format(solute, solvent)
 temp = 298.15*unit.kelvin
-states_data = pd.read_csv('../../expanded_ensemble_states.inp', sep='\s+', comment='#')
+states_data = pd.read_csv('expanded_ensemble_states.inp', sep='\s+', comment='#')
 expandedEnsembleReporter = atomsmm.reporters.ExpandedEnsembleReporter(stdout,
     args.reportInterval, separator=',', states=states_data, temperature=temp)
 expandedEnsembleReporter.read_csv(f'{base}.csv', nrows=args.nrows)

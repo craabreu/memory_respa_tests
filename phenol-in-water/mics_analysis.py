@@ -13,7 +13,7 @@ T = 298.15*unit.kelvin
 solute = 'phenol'
 solvent = 'water'
 kB = unit.BOLTZMANN_CONSTANT_kB*unit.AVOGADRO_CONSTANT_NA
-states = pd.read_csv('../../alchemical_states.inp', sep='\s+', comment='#')
+states = pd.read_csv('alchemical_states.inp', sep='\s+', comment='#')
 nstates = len(states.index)
 states = states[states.weight != -np.inf].drop('weight', axis=1)
 files = [f'{solute}-in-{solvent}_energy-{i:02d}.csv' for i in states.index]

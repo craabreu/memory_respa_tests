@@ -80,7 +80,7 @@ simulation = openmm.app.Simulation(pdb.topology, respa_system, integrator, platf
 simulation.context.setPositions(pdb.positions)
 simulation.context.setVelocitiesToTemperature(temp, seed)
 
-states_data = pd.read_csv('../../expanded_ensemble_states.inp', sep='\s+', comment='#')
+states_data = pd.read_csv('expanded_ensemble_states.inp', sep='\s+', comment='#')
 parameterStates = states_data[['lambda_vdw', 'lambda_coul']]
 state = len(states_data.index) - 1
 for name, value in parameterStates.iloc[state].items():
