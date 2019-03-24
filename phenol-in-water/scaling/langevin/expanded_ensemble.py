@@ -64,10 +64,10 @@ solvation_system = atomsmm.SolvationSystem(openmm_system, solute_atoms,
                                            split_exceptions=False)
 
 if args.timestep > 3:
-    respa_system = atomsmm.RESPASystem(openmm_system, rcutIn, rswitchIn, fastExceptions=True)
+    respa_system = atomsmm.RESPASystem(solvation_system, rcutIn, rswitchIn, fastExceptions=True)
     loops = [6, args.timestep//3, 1]
 else:
-    respa_system = openmm_system
+    respa_system = solvation_system
     for force in respa_system.getForces():
         if isinstance(force, openmm.NonbondedForce):
             force.setReciprocalSpaceForceGroup(1)
@@ -98,3 +98,4 @@ simulation.reporters = [dataReporter, expandedEnsembleReporter]
 simulation.step(args.nsteps)
 expandedEnsembleReporter.state_sampling_analysis()
 expandedEnsembleReporter.walking_time_analysis()
+
