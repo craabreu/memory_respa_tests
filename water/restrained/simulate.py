@@ -90,8 +90,7 @@ dataReporter = atomsmm.ExtendedStateDataReporter(stdout, reportInterval, separat
         molecularPressure=True,
 #        molecularKineticEnergy=True,
 #        coulombEnergy=True,
-        pressure_computer=computer,
-        time_scales=(3 if args.timestep > 3 else 2),
+        pressureComputer=computer,
         speed=True,
         extraFile=f'{base}.csv')
 
