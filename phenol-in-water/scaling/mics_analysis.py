@@ -19,13 +19,14 @@ states = states[states.weight != -np.inf].drop('weight', axis=1)
 files = [f'{solute}-in-{solvent}_energy-{i:02d}.csv' for i in states.index]
 renamer = lambda x: x.replace('Energy[','E').replace('] (kJ/mole)', '')
 kT = (kB*T).value_in_unit(unit.kilojoules_per_mole)
+discard = 4000
 
 mx.verbose = True
 samples = mx.pooledsample()
 for i, file in zip(states.index, files):
     print(f"Reading file {file}")
     df = pd.read_csv(file)
-    df.drop(index=range(15000), inplace=True)
+    df.drop(index=range(discard), inplace=True)
     df.rename(renamer, axis='columns', inplace=True)
     prev = max(i-1, 0)
     next = min(i+1, nstates-1)
