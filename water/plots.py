@@ -7,9 +7,13 @@ import os
 from scipy.fftpack import fft
 
 methods = dict(
-    sinr='Isokinetic',
-    langevin='Memory Langevin',
-    # impulse='Impulse Langevin',
+    sinr='SIN(R) L=1',
+    # memory='Memory SIN(R) L=1',
+    # memory_L4='Memory SIN(R) L=4',
+    # restrained_no_memory='Impulse IsoK-Langevin',
+    restrained='Memory IsoK-Langevin',
+    # impulse='Impulse BAOBA-Langevin',
+    langevin='Memory BAOAB-Langevin',
 )
 
 Nmol = 500
@@ -126,9 +130,9 @@ def plot_properties():
     fig.savefig('average_properties.png')
 
 all = ['0.5', '01', '03', '06', '09', '15', '30', '45', '90']
-plot_radial_distribution_functions(all)
+# plot_radial_distribution_functions(all)
 # plot_bond_length_distributions(all)
 # plot_angle_distributions(all)
-# plot_bond_and_angle_averages()
-# plot_properties()
-plt.show()
+plot_bond_and_angle_averages()
+plot_properties()
+# plt.show()
